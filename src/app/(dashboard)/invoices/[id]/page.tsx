@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import { useRouter } from "next/navigation";
 import { useInvoiceStore } from "@/lib/store/invoiceStore";
 import { useClientStore } from "@/lib/store/clientStore";
@@ -46,6 +44,9 @@ export default function InvoiceDetailPage({ params }: { params: { id: string } }
 
     setIsGeneratingPDF(true);
     try {
+      const html2canvas = (await import("html2canvas")).default;
+      const { jsPDF } = await import("jspdf");
+
       const canvas = await html2canvas(element, {
         scale: 2, // High resolution
         useCORS: true,
