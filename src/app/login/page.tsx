@@ -143,6 +143,17 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#F8F9FA] overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
+      {/* Back button positioned on top-left of page content area */}
+      <div className="absolute top-6 left-6 z-20">
+        <a 
+          href="/landing.html" 
+          className="flex items-center gap-2 px-3.5 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-500 hover:text-emerald-600 hover:border-emerald-300 hover:shadow-sm transition-all active:scale-95 duration-200"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Retour à l'accueil</span>
+        </a>
+      </div>
+
       {/* Decorative colored backgrounds matching IZI Facture brand accent colors */}
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-[#004D40] rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
@@ -150,8 +161,8 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8 relative z-10 animate-in fade-in duration-500">
         
         {/* App Logo & Letterhead */}
-        <div className="flex flex-col items-center justify-center text-center">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#004D40] text-white shadow-xl shadow-emerald-950/20 mb-4">
+        <a href="/landing.html" className="flex flex-col items-center justify-center text-center group cursor-pointer hover:opacity-90 transition-opacity">
+          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#004D40] text-white shadow-xl shadow-emerald-950/20 mb-4 group-hover:scale-105 transition-transform">
             <svg 
               className="w-7 h-7 text-primary" 
               fill="none" 
@@ -162,13 +173,13 @@ export default function LoginPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h2 className="text-3xl font-extrabold text-brand-dark tracking-tight">
+          <h2 className="text-3xl font-extrabold text-brand-dark tracking-tight group-hover:text-emerald-700 transition-colors">
             IZI Facture
           </h2>
           <p className="text-xs text-emerald-600 font-bold tracking-widest uppercase mt-0.5">
             Facturer en un clic
           </p>
-        </div>
+        </a>
 
         {/* Auth card wrapper */}
         <div className="bg-white border border-gray-100 shadow-xl shadow-gray-200/50 rounded-3xl p-8 space-y-6">
