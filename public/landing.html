@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>iziFacture | La facturation moderne pour l'Afrique</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#434933",
+            "inverse-primary": "#4f6700",
+            "tertiary-fixed": "#e5e2e1",
+            "tertiary-container": "#e3e0df",
+            "secondary-fixed-dim": "#c8c6c5",
+            "on-background": "#e2e2e2",
+            "on-primary": "#000000",
+            "inverse-surface": "#e2e2e2",
+            "on-tertiary-fixed": "#1c1b1b",
+            "surface-container-high": "#282a2b",
+            "on-primary-fixed": "#000000",
+            "on-surface-variant": "#c4c9ad",
+            "on-surface": "#e2e2e2",
+            "error": "#ffb4ab",
+            "surface-dim": "#121414",
+            "surface": "#121414",
+            "outline": "#8e9379",
+            "tertiary-fixed-dim": "#c8c6c5",
+            "surface-container": "#1e2020",
+            "primary-fixed-dim": "#1cff00",
+            "tertiary": "#f9feff",
+            "surface-container-low": "#1a1c1c",
+            "inverse-on-surface": "#2f3131",
+            "error-container": "#93000a",
+            "primary": "#1cff00",
+            "on-error": "#690005",
+            "secondary-fixed": "#e5e2e1",
+            "on-secondary": "#313030",
+            "surface-variant": "#333535",
+            "surface-container-lowest": "#0c0f0f",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#313030",
+            "on-secondary-container": "#b7b5b4",
+            "primary-container": "#1cff00",
+            "primary-fixed": "#1cff00",
+            "on-secondary-fixed-variant": "#474746",
+            "on-primary-container": "#000000",
+            "background": "#0F0F0F",
+            "secondary": "#c8c6c5",
+            "on-secondary-fixed": "#1c1b1b",
+            "surface-bright": "#38393a",
+            "on-tertiary-fixed-variant": "#474646",
+            "surface-tint": "#1cff00",
+            "secondary-container": "#474746",
+            "surface-container-highest": "#333535",
+            "on-tertiary-container": "#646363",
+            "on-primary-fixed-variant": "#00241b"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "2rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "section-gap": "96px",
+            "element-gap": "32px",
+            "stack-sm": "8px",
+            "stack-md": "16px",
+            "container-max": "1280px"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Geist"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "headline-md": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg-mobile": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0F0F0F;
+      color: #e2e2e2;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    .bg-grid {
+      background-size: 120px 120px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    .glass-card {
+      background: rgba(26, 26, 26, 0.4);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(28, 255, 0, 0.6);
+      box-shadow: 0 0 35px rgba(28, 255, 0, 0.12);
+      background: rgba(26, 26, 26, 0.65);
+      transform: translateY(-4px);
+    }
+
+    .glow-lime {
+      box-shadow: 0 0 30px rgba(28, 255, 0, 0.2);
+    }
+
+    .magnetic-btn {
+      transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.3s ease;
+    }
+    .magnetic-btn:hover {
+      box-shadow: 0 0 25px rgba(28, 255, 0, 0.3);
+    }
+
+    .ambient-glow {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(28, 255, 0, 0.08) 0%, rgba(28, 255, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Float Animations for Hero Icons */
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(12px) rotate(-3deg); }
+    }
+    .animate-float-1 { animation: float-gentle 6s ease-in-out infinite; }
+    .animate-float-2 { animation: float-reverse 7s ease-in-out infinite; }
+    .animate-float-3 { animation: float-gentle 8s ease-in-out infinite 1s; }
+    .animate-float-4 { animation: float-reverse 9s ease-in-out infinite 0.5s; }
+
+    /* Hide scrollbar for clean presentation */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F0F0F;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #282a2b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1cff00;
+    }
+
+    /* Skeleton Loader Styling */
+    @keyframes skeleton-shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-loading {
+      background: linear-gradient(90deg, rgba(28, 255, 0, 0.02) 25%, rgba(28, 255, 0, 0.15) 50%, rgba(28, 255, 0, 0.02) 75%) !important;
+      background-size: 200% 100% !important;
+      animation: skeleton-shimmer 1.2s infinite linear !important;
+      color: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      pointer-events: none !important;
+      border-radius: 6px !important;
+    }
+    .skeleton-loading * {
+      opacity: 0 !important;
+    }
+    .card-loading {
+      border-color: rgba(28, 255, 0, 0.4) !important;
+      box-shadow: 0 0 25px rgba(28, 255, 0, 0.1) !important;
+      animation: border-pulse 1.2s infinite ease-in-out;
+    }
+    @keyframes border-pulse {
+      0%, 100% { border-color: rgba(28, 255, 0, 0.2); box-shadow: 0 0 15px rgba(28, 255, 0, 0.05); }
+      50% { border-color: rgba(28, 255, 0, 0.6); box-shadow: 0 0 30px rgba(28, 255, 0, 0.2); }
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-background bg-grid antialiased">
+
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/5 shadow-sm">
+  <div class="flex justify-between items-center px-4 sm:px-8 py-3 sm:py-5 max-w-container-max mx-auto">
+    <a href="#" class="flex items-center gap-2 group">
+      <span class="material-symbols-outlined text-primary text-2xl sm:text-3xl group-hover:scale-105 transition-transform">account_balance_wallet</span>
+      <span class="font-display-lg text-sm sm:text-body-lg font-bold text-white tracking-tight group-hover:text-primary transition-colors">iziFacture</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-white hover:text-primary transition-colors font-body-md text-sm" href="#">Accueil</a>
+      <a class="text-on-surface-variant hover:text-white transition-colors font-body-md text-sm" href="#features">Fonctionnalités</a>
+      <a class="text-on-surface-variant hover:text-white transition-colors font-body-md text-sm" href="#testimonials">Témoignages</a>
+      <a class="text-on-surface-variant hover:text-white transition-colors font-body-md text-sm" href="#pricing">Tarifs</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/login?mode=signup" class="bg-primary text-black px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 active:scale-95 text-xs sm:text-sm">
+        <span class="hidden sm:inline">Commencer gratuitement</span>
+        <span class="inline sm:hidden">Commencer</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION (Centered with robust mobile-first responsive scaling) -->
+<section class="relative min-h-0 md:min-h-[85vh] pt-20 sm:pt-40 pb-12 sm:pb-20 overflow-hidden px-6 flex items-center justify-center text-center">
+  <div class="ambient-glow top-1/4 left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(28, 255, 0, 0.08) 0%, rgba(28, 255, 0, 0) 70%);"></div>
+  
+  <!-- Floating Billing Icons around Hero (Reduced, blurred, and floating) -->
+  <div class="absolute inset-0 max-w-container-max mx-auto pointer-events-none hidden md:block z-0">
+    <!-- Icon 1: Invoice Sheet (Top Left) -->
+    <div class="absolute top-24 left-16 w-12 h-12 bg-surface-container/60 backdrop-blur-md border border-white/5 rounded-xl p-2.5 flex items-center justify-center shadow-xl animate-float-1 opacity-65 blur-[0.5px]">
+      <span class="material-symbols-outlined text-primary text-2xl">description</span>
+    </div>
+    <!-- Icon 2: VAT Percent (Top Right) -->
+    <div class="absolute top-28 right-24 w-10 h-10 bg-surface-container/60 backdrop-blur-md border border-white/5 rounded-xl flex items-center justify-center shadow-xl animate-float-2 opacity-65 blur-[0.5px]">
+      <span class="material-symbols-outlined text-primary text-2xl">percent</span>
+    </div>
+    <!-- Icon 3: Wallet/Coins (Bottom Left) -->
+    <div class="absolute bottom-28 left-36 w-10 h-10 bg-surface-container/60 backdrop-blur-md border border-white/5 rounded-xl flex items-center justify-center shadow-xl animate-float-3 opacity-65 blur-[0.5px]">
+      <span class="material-symbols-outlined text-primary text-2xl">payments</span>
+    </div>
+    <!-- Icon 4: Safe lock (Bottom Right) -->
+    <div class="absolute bottom-24 right-36 w-12 h-12 bg-surface-container/60 backdrop-blur-md border border-white/5 rounded-xl p-2.5 flex items-center justify-center shadow-xl animate-float-4 opacity-65 blur-[0.5px]">
+      <span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10 w-full flex flex-col items-center justify-center text-center px-4">
+    <!-- Clickable badge linking to Testimonials -->
+    <a href="#testimonials" class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-surface/40 backdrop-blur-md mb-4 sm:mb-8 reveal hover:border-primary/45 transition-colors cursor-pointer">
+      <span class="text-white font-body-md text-xs tracking-wide">⭐ 4900+ clients satisfaits</span>
+      <span class="material-symbols-outlined text-sm text-primary">arrow_outward</span>
+    </a>
+    
+    <!-- Title on exactly 2 centered lines, extremely bold, premium style (Arrow SVG removed) -->
+    <h1 class="font-display-lg text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 leading-[1.1] reveal tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-white font-extrabold pb-3 text-center w-full max-w-5xl">
+      Des factures pour vos<br/>
+      <span class="text-white">clients en un clic</span>
+    </h1>
+    
+    <p class="font-body-lg text-sm sm:text-base md:text-lg text-on-surface-variant max-w-lg mb-6 sm:mb-8 reveal leading-relaxed text-center mx-auto" style="transition-delay: 100ms;">
+      Gérez votre entreprise avec élégance. Créez des factures professionnelles, suivez vos paiements et automatisez votre TVA en quelques clics sans prise de tête.
+    </p>
+    
+    <!-- Centered & Responsive CTA Button leading to signup view -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto reveal" style="transition-delay: 200ms;">
+      <a href="/login?mode=signup" class="magnetic-btn bg-primary text-black px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 active:scale-95 text-sm inline-flex items-center justify-center text-center shadow-md shadow-primary/15 w-full sm:w-auto">
+        Commencer gratuitement
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS SECTION (With smaller headline font size & optimized spacing) -->
+<section class="py-12 sm:py-20 px-4 sm:px-8 border-t border-white/5">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-8 sm:mb-12 reveal">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 animate-element">Pourquoi abandonner l'ancien système ?</h2>
+      <p class="text-on-surface-variant text-sm sm:text-base animate-element">La paperasse ne devrait pas être un frein à votre croissance.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Problem 1 -->
+      <div class="glass-card p-6 sm:p-10 reveal hover:border-red-500/40 hover:shadow-red-500/10" style="transition-delay: 100ms;">
+        <div class="w-14 h-14 rounded-full bg-surface border border-red-500/20 text-red-500 flex items-center justify-center mb-6 shadow-md shadow-red-500/5">
+          <span class="material-symbols-outlined text-2xl">description</span>
+        </div>
+        <h3 class="text-xl font-bold mb-4 tracking-tight">Factures non professionnelles</h3>
+        <p class="text-on-surface-variant leading-relaxed text-sm">Les fichiers Word envoyés par WhatsApp nuisent à votre crédibilité. Vos clients méritent mieux.</p>
+      </div>
+      <!-- Problem 2 -->
+      <div class="glass-card p-6 sm:p-10 reveal hover:border-red-500/40 hover:shadow-red-500/10" style="transition-delay: 200ms;">
+        <div class="w-14 h-14 rounded-full bg-surface border border-red-500/20 text-red-500 flex items-center justify-center mb-6 shadow-md shadow-red-500/5">
+          <span class="material-symbols-outlined text-2xl">calculate</span>
+        </div>
+        <h3 class="text-xl font-bold mb-4 tracking-tight">Erreurs de TVA (18%)</h3>
+        <p class="text-on-surface-variant leading-relaxed text-sm">Les erreurs de calcul manuel sur la TVA et les remises vous font perdre de l'argent et du temps précieux.</p>
+      </div>
+      <!-- Problem 3 -->
+      <div class="glass-card p-6 sm:p-10 reveal hover:border-red-500/40 hover:shadow-red-500/10" style="transition-delay: 300ms;">
+        <div class="w-14 h-14 rounded-full bg-surface border border-red-500/20 text-red-500 flex items-center justify-center mb-6 shadow-md shadow-red-500/5">
+          <span class="material-symbols-outlined text-2xl">history</span>
+        </div>
+        <h3 class="text-xl font-bold mb-4 tracking-tight">Suivi de paiement manuel</h3>
+        <p class="text-on-surface-variant leading-relaxed text-sm">Plus besoin de fouiller vos mails ou SMS pour savoir qui vous a payé et qui vous doit de l'argent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMPLIFIED & CLEAN FEATURES SECTION -->
+<section id="features" class="py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-8 sm:mb-16 reveal">
+      <h2 class="text-2xl sm:text-3xl md:text-headline-md font-bold mb-4 tracking-tight">La puissance dans la simplicité</h2>
+      <p class="text-on-surface-variant text-sm sm:text-body-lg">Tout ce dont un entrepreneur africain a besoin pour réussir.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Feature 1: Factures en 2 clics -->
+      <div class="glass-card p-6 sm:p-10 reveal flex flex-col justify-between" style="transition-delay: 100ms;">
+        <div class="space-y-4">
+          <div class="text-primary">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight">Factures en 2 clics</h3>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Générez des factures professionnelles conformes aux réglementations. Personnalisez-les avec vos coordonnées, et téléchargez-les instantanément en PDF.</p>
+        </div>
+      </div>
+      
+      <!-- Feature 2: TVA Automatique (Clean and simple card with no inputs) -->
+      <div class="glass-card p-6 sm:p-10 reveal flex flex-col justify-between" style="transition-delay: 200ms;">
+        <div class="space-y-4">
+          <div class="text-primary">
+            <span class="material-symbols-outlined text-4xl">percent</span>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight">TVA Automatique</h3>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Calcul automatique et conforme de la TVA à 18% ou exonérée selon vos clients. Simplifiez vos déclarations et éliminez définitivement le risque d'erreurs de calcul.</p>
+        </div>
+      </div>
+      
+      <!-- Feature 3: Suivi en Temps Réel -->
+      <div class="glass-card p-6 sm:p-10 reveal flex flex-col justify-between" style="transition-delay: 300ms;">
+        <div class="space-y-4">
+          <div class="text-primary">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight">Suivi des règlements</h3>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Suivez le statut de chaque facture en temps réel. Identifiez immédiatement les retards de paiement pour préserver votre trésorerie et vos relances.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (Votre voyage vers la prospérité financière - Responsive grid layout) -->
+<section class="py-12 sm:py-24 px-4 sm:px-8">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-8 sm:mb-16 reveal">
+      <h2 class="text-2xl sm:text-3xl md:text-headline-md font-bold mb-4 tracking-tight animate-element">Votre voyage vers la prospérité financière</h2>
+      <p class="text-on-surface-variant text-sm sm:text-body-lg animate-element">Trois étapes simples pour transformer votre business.</p>
+    </div>
+    
+    <div class="relative flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:gap-8 max-w-lg md:max-w-none mx-auto">
+      <!-- Vertical connecting line for mobile -->
+      <div class="absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-px bg-primary/20 -z-10 md:hidden"></div>
+      
+      <!-- Horizontal connecting line for desktop/tablet -->
+      <div class="absolute top-8 left-[16.6%] right-[16.6%] h-px bg-primary/20 -z-10 hidden md:block"></div>
+      
+      <!-- Step 1 -->
+      <div class="w-full md:w-1/3 text-center reveal" style="transition-delay: 100ms;">
+        <div class="w-16 h-16 rounded-full bg-surface border border-primary/45 text-primary font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary/5 relative z-10">01</div>
+        <h3 class="text-xl font-bold mb-2 tracking-tight">Inscris-toi</h3>
+        <p class="text-on-surface-variant text-xs leading-relaxed max-w-xs mx-auto">Créez votre compte en 10 secondes. Renseignez le nom de votre entreprise et configurez votre devise.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="w-full md:w-1/3 text-center reveal" style="transition-delay: 200ms;">
+        <div class="w-16 h-16 rounded-full bg-surface border border-primary/45 text-primary font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary/5 relative z-10">02</div>
+        <h3 class="text-xl font-bold mb-2 tracking-tight">Crée ta facture</h3>
+        <p class="text-on-surface-variant text-xs leading-relaxed max-w-xs mx-auto">Ajoutez votre client, vos lignes d'articles et laissez notre moteur calculer le total et la TVA automatiquement.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="w-full md:w-1/3 text-center reveal" style="transition-delay: 300ms;">
+        <div class="w-16 h-16 rounded-full bg-surface border border-primary/45 text-primary font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary/5 relative z-10">03</div>
+        <h3 class="text-xl font-bold mb-2 tracking-tight">Envoie &amp; Suis</h3>
+        <p class="text-on-surface-variant text-xs leading-relaxed max-w-xs mx-auto">Téléchargez le PDF de haute qualité, partagez-le et suivez le statut de règlement en temps réel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+  <div class="ambient-glow top-1/2 left-0" style="background: radial-gradient(circle, rgba(28, 255, 0, 0.03) 0%, rgba(28, 255, 0, 0) 70%);"></div>
+  <div class="max-w-container-max mx-auto relative z-10">
+    <div class="text-center mb-8 sm:mb-16 reveal">
+      <h2 class="text-2xl sm:text-3xl md:text-headline-md font-bold mb-4 tracking-tight">Ce qu'en disent nos clients</h2>
+      <p class="text-on-surface-variant text-sm sm:text-body-lg">Des entrepreneurs de Dakar, Abidjan et Douala nous font confiance.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="glass-card p-6 sm:p-10 flex flex-col justify-between reveal" style="transition-delay: 100ms;">
+        <p class="text-on-surface text-sm leading-relaxed italic mb-8">
+          "Avant iziFacture, je passais mes dimanches soirs à faire mes factures et à calculer mes totaux sur Excel. Maintenant, je génère un PDF professionnel en 2 clics et mes clients me prennent enfin au sérieux. Un vrai bonheur !"
+        </p>
+        <div class="flex items-center gap-3 pt-6 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">AD</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Amadou Diop</h4>
+            <span class="text-[10px] text-on-surface-variant block mt-0.5">Freelance Designer • Dakar, Sénégal</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="glass-card p-6 sm:p-10 flex flex-col justify-between reveal" style="transition-delay: 200ms;">
+        <p class="text-on-surface text-sm leading-relaxed italic mb-8">
+          "La gestion de la TVA à 18% était un casse-tête permanent pour notre équipe commerciale. Depuis que nous utilisons iziFacture, tout est automatisé sans erreur possible. Le support client est ultra-réactif."
+        </p>
+        <div class="flex items-center gap-3 pt-6 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">FT</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Fatou Touré</h4>
+            <span class="text-[10px] text-on-surface-variant block mt-0.5">Boutique Prêt-à-porter • Abidjan, Côte d'Ivoire</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="glass-card p-6 sm:p-10 flex flex-col justify-between reveal" style="transition-delay: 300ms;">
+        <p class="text-on-surface text-sm leading-relaxed italic mb-8">
+          "Le suivi des factures en attente ou en retard a complètement changé notre trésorerie. Je sais exactement qui relancer et à quel moment. Grâce à cela, nos délais de paiement ont été divisés par deux !"
+        </p>
+        <div class="flex items-center gap-3 pt-6 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">JK</div>
+          <div>
+            <h4 class="text-sm font-bold text-white">Jean-Pierre Kamga</h4>
+            <span class="text-[10px] text-on-surface-variant block mt-0.5">Consulting &amp; IT • Douala, Cameroun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="py-12 sm:py-24 px-4 sm:px-8 relative border-t border-white/5" id="pricing">
+  <div class="max-w-container-max mx-auto relative z-10">
+    <div class="text-center mb-8 sm:mb-16 reveal">
+      <h2 class="text-2xl sm:text-3xl md:text-headline-md font-bold mb-4 tracking-tight">Un prix juste pour chaque étape</h2>
+      <p class="text-on-surface-variant text-sm sm:text-body-lg">Sans engagement, annulez quand vous voulez.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Free Tier -->
+      <div class="glass-card p-6 sm:p-10 flex flex-col reveal">
+        <h3 class="text-2xl font-bold mb-2 tracking-tight">Gratuit</h3>
+        <p class="text-on-surface-variant text-sm mb-8">Pour les débutants</p>
+        <div class="text-5xl font-extrabold mb-10 tracking-tight">0 FCFA<span class="text-lg font-normal text-on-surface-variant">/mois</span></div>
+        <ul class="space-y-5 mb-12 flex-1">
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> 5 factures / mois</li>
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> 1 utilisateur</li>
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> Devis illimités</li>
+        </ul>
+        <a href="/login?mode=signup" class="w-full py-4 rounded-full bg-surface border border-white/10 hover:bg-white/5 transition-all font-semibold text-sm text-center">Essayer maintenant</a>
+      </div>
+      <!-- Pro Tier (Featured) -->
+      <div class="glass-card p-6 sm:p-10 border-primary/30 border relative flex flex-col z-10 reveal" style="transition-delay: 100ms; background: rgba(26, 26, 26, 0.7);">
+        <div class="absolute -top-4 right-10 bg-primary text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Populaire</div>
+        <h3 class="text-2xl font-bold mb-2 tracking-tight">Pro</h3>
+        <p class="text-on-surface-variant text-sm mb-8">Pour les indépendants sérieux</p>
+        <div class="text-5xl font-extrabold mb-6 sm:mb-10 tracking-tight text-white">5.000 FCFA<span class="text-lg font-normal text-on-surface-variant">/mois</span></div>
+        <ul class="space-y-3 sm:space-y-5 mb-8 sm:mb-12 flex-1">
+          <li class="flex items-center gap-4 text-sm font-medium text-white"><span class="material-symbols-outlined text-primary text-xs">check_circle</span> Factures illimitées</li>
+          <li class="flex items-center gap-4 text-sm font-medium text-white"><span class="material-symbols-outlined text-primary text-xs">check_circle</span> Exportation comptable</li>
+          <li class="flex items-center gap-4 text-sm font-medium text-white"><span class="material-symbols-outlined text-primary text-xs">check_circle</span> Support prioritaire 24/7</li>
+          <li class="flex items-center gap-4 text-sm font-medium text-white"><span class="material-symbols-outlined text-primary text-xs">check_circle</span> Relances automatiques</li>
+        </ul>
+        <a href="/login?mode=signup" class="w-full py-4 rounded-full bg-primary text-black font-semibold hover:bg-primary/90 transition-all text-sm text-center">Choisir le plan Pro</a>
+      </div>
+      <!-- Business Tier -->
+      <div class="glass-card p-6 sm:p-10 flex flex-col reveal" style="transition-delay: 200ms;">
+        <h3 class="text-2xl font-bold mb-2 tracking-tight">Business</h3>
+        <p class="text-on-surface-variant text-sm mb-8">Pour les agences et PME</p>
+        <div class="text-5xl font-extrabold mb-10 tracking-tight">15.000 FCFA<span class="text-lg font-normal text-on-surface-variant">/mois</span></div>
+        <ul class="space-y-5 mb-12 flex-1">
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> Jusqu'à 10 utilisateurs</li>
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> Rôles &amp; Permissions</li>
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> Gestion de stock avancée</li>
+          <li class="flex items-center gap-4 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-white/50 text-xs">check</span> Marque blanche (No branding)</li>
+        </ul>
+        <a href="/login?mode=signup" class="w-full py-4 rounded-full bg-surface border border-white/10 hover:bg-white/5 transition-all font-semibold text-sm text-center">Contacter les ventes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
+  <div class="ambient-glow bottom-0 left-1/2 -translate-x-1/2" style="width: 800px; height: 400px; background: radial-gradient(circle, rgba(28, 255, 0, 0.1) 0%, rgba(28, 255, 0, 0) 70%); border-radius: 100% 100% 0 0;"></div>
+  <div class="max-w-container-max mx-auto text-center reveal">
+    <h2 class="text-2xl sm:text-3xl md:text-headline-md mb-6 sm:mb-8 tracking-tight font-bold">Rejoins les entrepreneurs qui<br/><span class="text-primary">facturent comme des pros</span></h2>
+    <p class="text-on-surface-variant text-body-lg max-w-2xl mx-auto mb-12">
+      Commencez dès aujourd'hui et donnez à votre entreprise les outils qu'elle mérite.
+    </p>
+    <a href="/login?mode=signup" class="inline-block bg-primary text-black px-12 py-5 rounded-full font-semibold text-lg hover:scale-105 active:scale-95 transition-all text-center">
+      Commencer gratuitement
+    </a>
+    <p class="mt-6 text-on-surface-variant text-xs">Aucune carte bancaire requise. Annulation possible à tout moment.</p>
+  </div>
+</section>
+
+<!-- FOOTER (Differentiated with deep pine-green brand color) -->
+<footer class="w-full py-4 sm:py-6 bg-[#00241b] border-t border-primary/10 text-on-surface-variant">
+  <div class="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 max-w-container-max mx-auto gap-3 text-center sm:text-left">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-xl sm:text-2xl">account_balance_wallet</span>
+      <span class="font-display-lg text-xs sm:text-sm font-bold text-white tracking-tight">iziFacture</span>
+    </div>
+    <div class="flex items-center justify-center gap-6 my-1 sm:my-0">
+      <a class="hover:text-white transition-colors text-[11px] sm:text-xs" href="#">Conditions</a>
+      <a class="hover:text-white transition-colors text-[11px] sm:text-xs" href="#">Confidentialité</a>
+      <a class="hover:text-white transition-colors text-[11px] sm:text-xs" href="#">Contact</a>
+    </div>
+    <p class="text-[10px] sm:text-xs">© 2026 iziFacture. Fait avec fierté en Afrique. 💚</p>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for Skeleton Reveal Scroll Animation
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        
+        // If it is a glass card, apply shimmer skeleton effect to its texts/icons first
+        if (el.classList.contains('glass-card')) {
+          const textElements = el.querySelectorAll('h3, p, div, span, h4');
+          const shimmers = [];
+          
+          textElements.forEach(textEl => {
+            textEl.classList.add('skeleton-loading');
+            shimmers.push(textEl);
+          });
+          el.classList.add('card-loading');
+          
+          setTimeout(() => {
+            shimmers.forEach(textEl => {
+              textEl.classList.remove('skeleton-loading');
+            });
+            el.classList.remove('card-loading');
+            el.classList.add("active");
+          }, 1000);
+        } else {
+          // If it is regular section title/description or vertical step, reveal normally
+          el.classList.add("active");
+        }
+        observer.unobserve(el);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".reveal").forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // Magnetic Button Effect
+  const buttons = document.querySelectorAll('.magnetic-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const position = btn.getBoundingClientRect();
+      const x = e.clientX - position.left - position.width / 2;
+      const y = e.clientY - position.top - position.height / 2;
+      
+      btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0px, 0px)';
+    });
+  });
+</script>
+</body>
+</html>

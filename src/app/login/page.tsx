@@ -41,6 +41,14 @@ export default function LoginPage() {
       }
     }
     checkSession();
+
+    // Switch to signup view if requested
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("mode") === "signup") {
+        setView("signup");
+      }
+    }
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
